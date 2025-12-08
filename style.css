@@ -43,13 +43,12 @@ body {
   opacity: 0.7;
 }
 
-/* Hero container untuk teks + gambar */
 .hero-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  max-width: 1000px;
+  width: 100%;
   margin-bottom: 50px;
 }
 
@@ -107,7 +106,6 @@ body {
   color: #fff;
 }
 
-/* Previews */
 .previews {
   display: flex;
   gap: 20px;
@@ -143,8 +141,8 @@ body {
   color: #0070bc;
 }
 
-/* Hero image desktop */
 .hero-img {
+  flex-shrink: 0;
   width: 280px;
 }
 
@@ -228,7 +226,6 @@ body {
   border-radius: 12px;
 }
 
-/* Media Queries untuk HP */
 @media(max-width: 600px) {
   .hero-container {
     flex-direction: column;
