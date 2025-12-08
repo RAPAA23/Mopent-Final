@@ -43,6 +43,16 @@ body {
   opacity: 0.7;
 }
 
+/* Hero container untuk teks + gambar */
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1000px;
+  margin-bottom: 50px;
+}
+
 .hero {
   max-width: 600px;
   opacity: 1;
@@ -97,6 +107,7 @@ body {
   color: #fff;
 }
 
+/* Previews */
 .previews {
   display: flex;
   gap: 20px;
@@ -132,14 +143,13 @@ body {
   color: #0070bc;
 }
 
+/* Hero image desktop */
 .hero-img {
-  position: relative;
-  right: 40px;
-  top: 140px;
+  width: 280px;
 }
 
 .hero-img img {
-  width: 280px;
+  width: 100%;
   filter: drop-shadow(0 10px 40px rgba(0,0,0,0.2));
 }
 
@@ -220,6 +230,23 @@ body {
 
 /* Media Queries untuk HP */
 @media(max-width: 600px) {
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .hero-img {
+    width: 80%;
+    margin: 0;
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: auto;
+  }
+
   .previews {
     flex-direction: column;
     gap: 15px;
@@ -237,19 +264,6 @@ body {
 
   .subtitle {
     font-size: 16px;
-  }
-
-  .hero-img {
-    position: relative;
-    top: 20px;
-    right: 0;
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  .hero-img img {
-    width: 100%;
-    height: auto;
   }
 
   .bottom-area {
