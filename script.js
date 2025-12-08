@@ -20,6 +20,43 @@ alert('Terjadi kesalahan');
 });
 }
 
+const popup = document.getElementById("popupJoin");
+const closePopup = document.getElementById("closePopup");
+const submitEmailBtn = document.getElementById("submitEmail");
+const emailField = document.getElementById("waitlistEmail");
+
+joinBtn.addEventListener("click", () => {
+  popup.style.display = "flex";
+});
+
+closePopup.addEventListener("click", () => {
+  popup.style.display = "none";
+});
+
+submitEmailBtn.addEventListener("click", async () => {
+  const email = emailField.value.trim();
+
+  if (!email || !email.includes("@")) {
+    alert("Masukkan email yang valid.");
+    return;
+  }
+
+  try {
+    await db.collection("waitlist").add({
+      email: email,
+      createdAt: new Date()
+    });
+
+    alert("Terima kasih! Email kamu sudah masuk daftar awal.");
+    popup.style.display = "none";
+    emailField.value = "";
+
+  } catch (err) {
+    console.error(err);
+    alert("Terjadi kesalahan saat menyimpan. Coba lagi.");
+  }
+});
+
 if (previewBtn) {
   previewBtn.addEventListener("click", () => {
     document.getElementById("pinSection").scrollIntoView({
