@@ -1,0 +1,2 @@
+- [x] Remove canvas element from index.html
+- [x] Remove snow animation code from script.js

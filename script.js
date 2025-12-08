@@ -37,48 +37,32 @@ hero.style.opacity = 1;
 }
 });
 
-const canvas = document.getElementById("snow");
-const ctx = canvas.getContext("2d");
+const observerOptions = {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+};
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const flakes = [];
-
-for (let i = 0; i < 120; i++) {
-flakes.push({
-x: Math.random() * canvas.width,
-y: Math.random() * canvas.height,
-r: Math.random() * 3 + 1,
-d: Math.random() + 0.5
-});
-}
-
-function draw() {
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-ctx.beginPath();
-flakes.forEach(f => {
-ctx.moveTo(f.x, f.y);
-ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-});
-ctx.fill();
-update();
-}
-
-function update() {
-flakes.forEach(f => {
-f.y += f.d;
-if (f.y > canvas.height) {
-f.y = 0;
-f.x = Math.random() * canvas.width;
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
 }
 });
+}, observerOptions);
+
+const socialSection = document.getElementById("socialSection")
+
+const socialObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add("visible")
 }
+})
+},{
+threshold: 0.2
+})
 
-setInterval(draw, 33);
+if(socialSection) socialObserver.observe(socialSection)
 
-window.addEventListener("resize", () => {
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-});
+const aboutSection = document.getElementById("aboutSection")
+if (aboutSection) socialObserver.observe(aboutSection)
