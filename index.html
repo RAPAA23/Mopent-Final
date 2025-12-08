@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
@@ -7,14 +7,15 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <canvas id="snow"></canvas>
+
   <div class="wrap" role="main">
+
     <div class="nav">
-      <div class="logo" aria-hidden>
-        <div class="dot"></div>
-        <h1 id="brandName">Mopent</h1>
-      </div>
+      <div class="logo">
+  <img src="logo with typo.png" alt="Logo Mopent">
+</div>
       <div class="menu">Prelaunch • Koleksi Perdana</div>
     </div>
 
@@ -27,18 +28,63 @@
         <button class="btn alt" id="previewBtn">Lihat preview</button>
       </div>
 
-      <div class="previews" aria-hidden>
-        <div class="card"><img src="https://via.placeholder.com/240x160?text=Pin+1" alt="pin 1"><div class="price">Edisi Perdana</div></div>
-        <div class="card"><img src="https://via.placeholder.com/240x160?text=Pin+2" alt="pin 2"><div class="price">Limited</div></div>
-        <div class="card"><img src="https://via.placeholder.com/240x160?text=Pin+3" alt="pin 3"><div class="price">Prototype</div></div>
+      <div class="previews">
+        <div class="card">
+          <img src="https://placehold.co/240x160?text=Pin+1" alt="pin 1">
+          <div class="price">Edisi Perdana</div>
+        </div>
+
+        <div class="card">
+          <img src="https://placehold.co/240x160?text=Pin+2" alt="pin 2">
+          <div class="price">Limited</div>
+        </div>
+
+        <div class="card">
+          <img src="https://placehold.co/240x160?text=Pin+3" alt="pin 3">
+          <div class="price">Prototype</div>
+        </div>
       </div>
     </section>
 
-    <aside class="hero-img" aria-hidden>
-      <img id="heroImage" src="https://via.placeholder.com/520x520?text=Mopent+Pin" alt="hero pin">
+    <aside class="hero-img" aria-hidden="true">
+      <img id="heroImage" src="https://placehold.co/520x520?text=Mopent+Pin" alt="Hero Image">
     </aside>
 
     <div class="foot">© Mopent. Prelaunch.</div>
+
+  </div>
+
+  <div class="bottom-area">
+
+    <div class="info-row">
+
+      <section class="social-box" id="socialSection">
+        <h2>Ikuti Kami</h2>
+        <div class="social-links">
+          <a href="#" class="social-item" target="_blank">
+            <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+
+          <a href="#" class="social-item" target="_blank">
+            <img src="https://img.icons8.com/fluency/48/twitter.png" alt="Twitter">
+            <span>Twitter</span>
+          </a>
+
+          <a href="#" class="social-item" target="_blank">
+            <img src="https://img.icons8.com/fluency/48/facebook.png" alt="Facebook">
+            <span>Facebook</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="about-box" id="aboutSection">
+        <h2>Tentang Kami</h2>
+        <p>Mopent adalah brand aksesori yang fokus ke koleksi pin unik. Kamu bisa dapat akses awal untuk rilisan pertama dan lihat produk yang sedang kami kembangkan.</p>
+      </section>
+
+    </div>
+
   </div>
 
   <script src="script.js"></script>
