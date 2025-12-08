@@ -1,41 +1,63 @@
-const joinBtn = document.getElementById('joinBtn');
-const previewBtn = document.getElementById('previewBtn');
+// BUTTONS
+const joinBtn = document.getElementById("joinBtn");
+const previewBtn = document.getElementById("previewBtn");
 
-// Popup Elements
+// POPUP ELEMENTS
 const popup = document.getElementById("popupJoin");
 const closePopup = document.getElementById("closePopup");
 const submitEmailBtn = document.getElementById("submitEmail");
 const emailField = document.getElementById("waitlistEmail");
+const emailError = document.getElementById("emailError");
 
-/* OPEN POPUP */
+/* ================================================
+   OPEN POPUP
+================================================ */
 if (joinBtn) {
   joinBtn.addEventListener("click", () => {
     popup.style.display = "flex";
   });
 }
 
-/* CLOSE POPUP */
+/* ================================================
+   CLOSE POPUP
+================================================ */
 if (closePopup) {
   closePopup.addEventListener("click", () => {
     popup.style.display = "none";
   });
 }
 
-/* SUBMIT EMAIL TO FIRESTORE */
+/* ================================================
+   EMAIL SUBMISSION
+================================================ */
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 if (submitEmailBtn) {
   submitEmailBtn.addEventListener("click", async () => {
     const email = emailField.value.trim();
 
-    if (!email || !email.includes("@")) {
-      alert("Masukkan email yang valid.");
+    // VALIDASI EMAIL
+    if (!emailRegex.test(email)) {
+      emailError.textContent = "Format email tidak valid.";
+      emailError.classList.add("visible");
+      emailField.classList.add("input-error");
+
+      setTimeout(() => {
+        emailField.classList.remove("input-error");
+      }, 300);
+
       return;
     }
 
+    // Clear error jika valid
+    emailError.textContent = "";
+    emailError.classList.remove("visible");
+
+    // KIRIM KE FIRESTORE
     try {
-      await window.saveEmail(email); // Firebase modular function
-      alert("Email berhasil disimpan!");
-      popup.style.display = "none";
-      emailField.value = "";
+      await window.saveEmail(email);
+
+      window.location.href = "ty.html";
     } catch (err) {
       console.error("Error saving email:", err);
       alert("Terjadi kesalahan, coba lagi.");
@@ -43,16 +65,20 @@ if (submitEmailBtn) {
   });
 }
 
-/* PREVIEW BUTTON */
+/* ================================================
+   PREVIEW BUTTON
+================================================ */
 if (previewBtn) {
   previewBtn.addEventListener("click", () => {
     document.getElementById("pinSection").scrollIntoView({
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 }
 
-/* ANIMATION + OBSERVER */
+/* ================================================
+   ANIMATION + OBSERVER
+================================================ */
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.querySelector(".hero");
   if (hero) {
@@ -74,24 +100,13 @@ const observer = new IntersectionObserver(
   { threshold: 0.2 }
 );
 
-const pinSection = document.getElementById("pinSection");
-if (pinSection) observer.observe(pinSection);
-
-const socialSection = document.getElementById("socialSection");
-const aboutSection = document.getElementById("aboutSection");
-
-if (socialSection) observer.observe(socialSection);
-if (aboutSection) observer.observe(aboutSection);
-
-const bottomArea = document.querySelector(".bottom-area");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 100) {
-    bottomArea.classList.add("scrolled");
-  } else {
-    bottomArea.classList.remove("scrolled");
-  }
+["pinSection", "socialSection", "aboutSection"].forEach((id) => {
+  const el = document.getElementById(id);
+  if (el) observer.observe(el);
 });
 
-const appleTargets = document.querySelectorAll(".apple-animate");
-appleTargets.forEach((el) => observer.observe(el));
+window.addEventListener("scroll", () => {
+  const bottomArea = document.querySelector(".bottom-area");
+  if (window.scrollY > 100) bottomArea.classList.add("scrolled");
+  else bottomArea.classList.remove("scrolled");
+});

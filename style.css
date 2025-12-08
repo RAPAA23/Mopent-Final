@@ -346,3 +346,30 @@ body {
   from { transform: scale(0.9); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
+
+.email-error {
+  color: #ff3b3b;
+  font-size: 13px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  height: 14px;
+  opacity: 0;
+  transition: 0.25s ease;
+}
+
+.email-error.visible {
+  opacity: 1;
+}
+
+.input-error {
+  border-color: #ff3b3b !important;
+  animation: shake 0.2s ease;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
