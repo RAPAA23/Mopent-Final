@@ -5,3 +5,4 @@
 - [y] Change some color button and shadows
 - [y] Improve fade animation
 - [y] Change size box social media 
+- [y] Fix mobile looks
