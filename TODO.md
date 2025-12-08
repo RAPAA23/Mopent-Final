@@ -1,2 +1,7 @@
 - [x] Remove canvas element from index.html
 - [x] Remove snow animation code from script.js
+- [y] Add some logo.png
+- [y] Change some color background
+- [y] Change some color button and shadows
+- [y] Improve fade animation
+- [y] Change size box social media 

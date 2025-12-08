@@ -66,3 +66,13 @@ if(socialSection) socialObserver.observe(socialSection)
 
 const aboutSection = document.getElementById("aboutSection")
 if (aboutSection) socialObserver.observe(aboutSection)
+
+const bottomArea = document.querySelector(".bottom-area")
+
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 200){
+    bottomArea.classList.add("scrolled")
+  } else {
+    bottomArea.classList.remove("scrolled")
+  }
+})
