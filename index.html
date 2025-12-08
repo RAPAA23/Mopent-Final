@@ -92,7 +92,7 @@
   </div>
 </div>
 
-<!-- Popup Join Form -->
+// Pop up join form
 <div class="popup" id="popupJoin">
   <div class="popup-content">
     <h2>Daftar Akses Awal</h2>
@@ -107,14 +107,35 @@
   </div>
 </div>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+// Firebase Modular V12
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-<!-- Firebase Config & Init -->
-<script src="firebase.js"></script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyASzQXAydTkgNjq8VdDKRDMNw4oYITAfnY",
+    authDomain: "mopent2.firebaseapp.com",
+    projectId: "mopent2",
+    storageBucket: "mopent2.firebasestorage.app",
+    messagingSenderId: "999229291692",
+    appId: "1:999229291692:web:22536f59b581eafade3309"
+  };
 
-<!-- Main Script -->
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // Init Firestore
+  const db = getFirestore(app);
+
+  // Function to save email — exposed to script.js
+  window.saveEmail = async function (email) {
+    await addDoc(collection(db, "waitlist"), {
+      email: email,
+      createdAt: new Date()
+    });
+  };
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
