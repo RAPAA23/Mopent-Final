@@ -20,11 +20,12 @@ alert('Terjadi kesalahan');
 });
 }
 
-if(previewBtn){
-previewBtn.addEventListener('click', () => {
-const el = document.querySelector('.previews');
-if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
+if (previewBtn) {
+  previewBtn.addEventListener("click", () => {
+    document.getElementById("pinSection").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -37,7 +38,6 @@ hero.style.opacity = 1;
 }
 });
 
-// OBSERVER SCROLL UNTUK SOCIAL & ABOUT
 const observer = new IntersectionObserver((entries) => {
 entries.forEach(entry => {
 if (entry.isIntersecting) {
@@ -46,13 +46,15 @@ entry.target.classList.add('visible');
 });
 }, { threshold: 0.2 });
 
+const pinSection = document.getElementById("pinSection");
+if (pinSection) observer.observe(pinSection);
+
 const socialSection = document.getElementById("socialSection");
 const aboutSection = document.getElementById("aboutSection");
 
 if(socialSection) observer.observe(socialSection);
 if(aboutSection) observer.observe(aboutSection);
 
-// BACKGROUND BOTTOM AREA
 const bottomArea = document.querySelector(".bottom-area");
 
 window.addEventListener("scroll", () => {
@@ -62,3 +64,7 @@ window.addEventListener("scroll", () => {
     bottomArea.classList.remove("scrolled");
   }
 });
+
+const appleTargets = document.querySelectorAll(".apple-animate");
+
+appleTargets.forEach(el => observer.observe(el));

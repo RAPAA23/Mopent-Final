@@ -272,3 +272,28 @@ body {
     padding: 50px 15px;
   }
 }
+
+.pin-section {
+  margin: 100px auto 60px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 0.9s ease;
+}
+
+.pin-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pin-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.pin-section {
+  width: 100%;
+  margin-top: 120px;
+  text-align: center;
+}
