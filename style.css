@@ -231,6 +231,12 @@ body {
   border-radius: 12px;
 }
 
+.social-item img[src*="x-twitter"] {
+  width: 48px;
+  height: 48px;
+  transform: scale(0.833);
+}
+
 /* Media Queries HP */
 @media(max-width: 600px) {
   .hero-container {
