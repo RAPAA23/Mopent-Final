@@ -1,83 +1,125 @@
-// BUTTONS
 const joinBtn = document.getElementById("joinBtn");
 const previewBtn = document.getElementById("previewBtn");
+const googleBtn = document.getElementById("googleLogin");
+const scrollToPins = document.getElementById("scrollToPins");
 
-// POPUP ELEMENTS
 const popup = document.getElementById("popupJoin");
 const closePopup = document.getElementById("closePopup");
 const submitEmailBtn = document.getElementById("submitEmail");
+
 const emailField = document.getElementById("waitlistEmail");
 const emailError = document.getElementById("emailError");
 
-/* OPEN POPUP */
-joinBtn?.addEventListener("click", () => {
-  popup.style.display = "flex";
-});
+const welcomeSection = document.getElementById("welcomeSection");
+const welcomeAvatar = document.getElementById("welcomeAvatar");
+const welcomeTitle = document.getElementById("welcomeTitle");
 
-/* CLOSE POPUP */
-closePopup?.addEventListener("click", () => {
-  popup.style.display = "none";
-});
+const brandCards = document.getElementById("brandCards");
 
-/* EMAIL SUBMISSION */
+if (joinBtn && popup) {
+  joinBtn.addEventListener("click", () => {
+    popup.style.display = "flex";
+  });
+}
+
+if (closePopup && popup) {
+  closePopup.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+}
+
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-submitEmailBtn?.addEventListener("click", async () => {
-  const email = emailField.value.trim();
+if (submitEmailBtn) {
+  submitEmailBtn.addEventListener("click", async () => {
+    const email = emailField?.value.trim();
 
-  // VALIDASI EMAIL
-  if (!emailRegex.test(email)) {
-    emailError.textContent = "Format email tidak valid.";
-    emailError.classList.add("visible");
-    emailField.classList.add("input-error");
+    if (!email || !emailRegex.test(email)) {
+      if (emailError) emailError.textContent = "Format email tidak valid.";
+      emailError?.classList.add("visible");
+      emailField?.classList.add("input-error");
 
-    setTimeout(() => {
-      emailField.classList.remove("input-error");
-    }, 300);
+      setTimeout(() => {
+        emailField?.classList.remove("input-error");
+      }, 300);
 
-    return;
+      return;
+    }
+
+    emailError.textContent = "";
+    emailError.classList.remove("visible");
+
+    try {
+      await window.saveEmail(email);
+      popup.style.display = "none";
+      showAfterLogin({ email }); // mode email
+    } catch (err) {
+      console.error("Firestore error:", err);
+      alert("Terjadi kesalahan.");
+    }
+  });
+}
+
+if (googleBtn) {
+  googleBtn.addEventListener("click", async () => {
+    try {
+      const user = await window.loginGoogle();
+
+      // Simpan email ke waitlist
+      await window.saveEmail(user.email);
+
+      popup.style.display = "none";
+      showAfterLogin(user); // bawa avatar, displayName
+
+    } catch (err) {
+      console.error("Google login error:", err);
+      alert("Login Google gagal.");
+    }
+  });
+}
+
+function showAfterLogin(user) {
+  if (!welcomeSection) return;
+
+  welcomeSection.classList.remove("hidden");
+  brandCards?.classList.remove("hidden");
+
+  if (user.photoURL) {
+    welcomeAvatar.src = user.photoURL;
+    welcomeTitle.textContent = `Welcome, ${user.displayName}!`;
+  } else {
+    welcomeAvatar.src = "https://placehold.co/100x100?text=M";
+    welcomeTitle.textContent = "Welcome!";
   }
 
-  emailError.textContent = "";
-  emailError.classList.remove("visible");
+  // Scroll ke welcome
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-  try {
-    await window.saveEmail(email);
-    window.location.href = "ty.html";
-  } catch (err) {
-    console.error("Error saving email:", err);
-    alert("Terjadi kesalahan, coba lagi.");
-  }
-});
+if (previewBtn) {
+  previewBtn.addEventListener("click", () => {
+    document.getElementById("pinSection")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+}
 
-/* PREVIEW BUTTON */
-previewBtn?.addEventListener("click", () => {
-  document.getElementById("pinSection").scrollIntoView({ behavior: "smooth" });
-});
+if (scrollToPins) {
+  scrollToPins.addEventListener("click", () => {
+    document.getElementById("pinSection")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+}
 
-/* GOOGLE LOGIN */
-const googleBtn = document.getElementById("googleLogin");
-
-googleBtn?.addEventListener("click", async () => {
-  try {
-    const user = await window.loginGoogle();
-    await window.saveEmail(user.email);
-    window.location.href = "ty.html";
-  } catch (err) {
-    console.error(err);
-    alert("Login Google gagal.");
-  }
-});
-
-/* ANIMATION */
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.querySelector(".hero");
-  if (hero) {
-    hero.style.opacity = 0;
-    setTimeout(() => {
-      hero.style.opacity = 1;
-    }, 150);
-  }
+  if (!hero) return;
+
+  hero.style.opacity = 0;
+  setTimeout(() => {
+    hero.style.opacity = 1;
+  }, 150);
 });
 
 const observer = new IntersectionObserver(
@@ -94,8 +136,11 @@ const observer = new IntersectionObserver(
   if (el) observer.observe(el);
 });
 
+
 window.addEventListener("scroll", () => {
   const bottomArea = document.querySelector(".bottom-area");
+  if (!bottomArea) return;
+
   if (window.scrollY > 100) bottomArea.classList.add("scrolled");
   else bottomArea.classList.remove("scrolled");
 });

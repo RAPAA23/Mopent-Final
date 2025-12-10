@@ -19,6 +19,14 @@
     <div class="menu">Prelaunch • Koleksi Perdana</div>
   </div>
 
+  <!-- WELCOME SECTION (Hidden default) -->
+<div id="welcomeSection" class="welcome hidden">
+  <img id="welcomeAvatar" class="welcome-avatar" src="" alt="Avatar" />
+  <h2 id="welcomeTitle">Welcome!</h2>
+  <p class="welcome-sub">Kamu sudah terdaftar untuk akses awal Mopent.</p>
+  <button class="btn small" id="scrollToPins">Lihat Koleksi</button>
+</div>
+
   <div class="hero-container">
     <section class="hero">
       <h2 class="title" id="mainTitle">Ini Mo-pin ku, mana Mo-pin mu?</h2>
@@ -37,6 +45,21 @@
 
   <section class="pin-section" id="pinSection">
     <h2 class="pin-title">Koleksi Pertama Mopent</h2>
+
+  <!-- BRAND CARDS (Hidden default) -->
+<div id="brandCards" class="brand-cards hidden">
+  
+  <div class="brand-card">
+    <h3>Akses Awal</h3>
+    <p>Kamu bakal jadi orang pertama yang lihat rilisan Mopent.</p>
+  </div>
+
+  <div class="brand-card">
+    <h3>Update Eksklusif</h3>
+    <p>Kami bakal kirim info koleksi baru & bonus subscriber.</p>
+  </div>
+
+</div>
 
     <div class="previews">
       <div class="card">
@@ -116,9 +139,6 @@
 
 <p id="emailError" class="email-error"></p>
 
-<!-- =========================================================
-     FIREBASE (AUTH + FIRESTORE) — 1 MODULE SAJA
-========================================================= -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
   import { 
