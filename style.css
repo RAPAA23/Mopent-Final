@@ -379,3 +379,62 @@ body {
   75% { transform: translateX(-2px); }
   100% { transform: translateX(0); }
 }
+
+/* Separator */
+.separator {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  position: relative;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+  margin: 0 10px;
+}
+
+/* Email button */
+.primary-btn {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Google Button */
+.google-btn {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.2s ease;
+}
+
+.google-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.google-btn:hover {
+  background: #f7f7f7;
+  border-color: #ccc;
+}
+
+/* Close Button */
+.close-btn {
+  margin-top: 15px;
+  width: 100%;
+}

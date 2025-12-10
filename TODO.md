@@ -6,3 +6,8 @@
 - [y] Improve fade animation
 - [x] Change size box social media
 - [y] Fix mobile looks
+- [y] Adding admin website
+- [y] Clear admin website
+- [y] Adding desain to admin website
+- [x] Make login with google
+- [x] Make login with another social media

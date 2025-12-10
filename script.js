@@ -9,76 +9,67 @@ const submitEmailBtn = document.getElementById("submitEmail");
 const emailField = document.getElementById("waitlistEmail");
 const emailError = document.getElementById("emailError");
 
-/* ================================================
-   OPEN POPUP
-================================================ */
-if (joinBtn) {
-  joinBtn.addEventListener("click", () => {
-    popup.style.display = "flex";
-  });
-}
+/* OPEN POPUP */
+joinBtn?.addEventListener("click", () => {
+  popup.style.display = "flex";
+});
 
-/* ================================================
-   CLOSE POPUP
-================================================ */
-if (closePopup) {
-  closePopup.addEventListener("click", () => {
-    popup.style.display = "none";
-  });
-}
+/* CLOSE POPUP */
+closePopup?.addEventListener("click", () => {
+  popup.style.display = "none";
+});
 
-/* ================================================
-   EMAIL SUBMISSION
-================================================ */
+/* EMAIL SUBMISSION */
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-if (submitEmailBtn) {
-  submitEmailBtn.addEventListener("click", async () => {
-    const email = emailField.value.trim();
+submitEmailBtn?.addEventListener("click", async () => {
+  const email = emailField.value.trim();
 
-    // VALIDASI EMAIL
-    if (!emailRegex.test(email)) {
-      emailError.textContent = "Format email tidak valid.";
-      emailError.classList.add("visible");
-      emailField.classList.add("input-error");
+  // VALIDASI EMAIL
+  if (!emailRegex.test(email)) {
+    emailError.textContent = "Format email tidak valid.";
+    emailError.classList.add("visible");
+    emailField.classList.add("input-error");
 
-      setTimeout(() => {
-        emailField.classList.remove("input-error");
-      }, 300);
+    setTimeout(() => {
+      emailField.classList.remove("input-error");
+    }, 300);
 
-      return;
-    }
+    return;
+  }
 
-    // Clear error jika valid
-    emailError.textContent = "";
-    emailError.classList.remove("visible");
+  emailError.textContent = "";
+  emailError.classList.remove("visible");
 
-    // KIRIM KE FIRESTORE
-    try {
-      await window.saveEmail(email);
+  try {
+    await window.saveEmail(email);
+    window.location.href = "ty.html";
+  } catch (err) {
+    console.error("Error saving email:", err);
+    alert("Terjadi kesalahan, coba lagi.");
+  }
+});
 
-      window.location.href = "ty.html";
-    } catch (err) {
-      console.error("Error saving email:", err);
-      alert("Terjadi kesalahan, coba lagi.");
-    }
-  });
-}
+/* PREVIEW BUTTON */
+previewBtn?.addEventListener("click", () => {
+  document.getElementById("pinSection").scrollIntoView({ behavior: "smooth" });
+});
 
-/* ================================================
-   PREVIEW BUTTON
-================================================ */
-if (previewBtn) {
-  previewBtn.addEventListener("click", () => {
-    document.getElementById("pinSection").scrollIntoView({
-      behavior: "smooth",
-    });
-  });
-}
+/* GOOGLE LOGIN */
+const googleBtn = document.getElementById("googleLogin");
 
-/* ================================================
-   ANIMATION + OBSERVER
-================================================ */
+googleBtn?.addEventListener("click", async () => {
+  try {
+    const user = await window.loginGoogle();
+    await window.saveEmail(user.email);
+    window.location.href = "ty.html";
+  } catch (err) {
+    console.error(err);
+    alert("Login Google gagal.");
+  }
+});
+
+/* ANIMATION */
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.querySelector(".hero");
   if (hero) {
@@ -92,9 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
+      if (entry.isIntersecting) entry.target.classList.add("visible");
     });
   },
   { threshold: 0.2 }

@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
@@ -99,18 +99,39 @@
 
     <input type="email" id="waitlistEmail" placeholder="Email kamu..." />
 
-    <div class="popup-buttons">
-      <button id="submitEmail" class="btn">Daftar</button>
-      <button id="closePopup" class="btn alt">Tutup</button>
+    <button id="submitEmail" class="btn primary-btn">Daftar dengan Email</button>
+
+    <div class="separator">
+      <span>atau</span>
     </div>
+
+    <button id="googleLogin" class="google-btn">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
+      <span>Masuk dengan Google</span>
+    </button>
+
+    <button id="closePopup" class="btn alt close-btn">Tutup</button>
   </div>
 </div>
 
 <p id="emailError" class="email-error"></p>
 
+<!-- =========================================================
+     FIREBASE (AUTH + FIRESTORE) — 1 MODULE SAJA
+========================================================= -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc 
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+  import { 
+    getAuth, 
+    GoogleAuthProvider, 
+    signInWithPopup 
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyASzQXAydTkgNjq8VdDKRDMNw4oYITAfnY",
@@ -124,15 +145,24 @@
   // Init Firebase
   const app = initializeApp(firebaseConfig);
 
-  // Init Firestore
+  // Firestore
   const db = getFirestore(app);
 
-  // Function to save email — exposed to script.js
-  window.saveEmail = async function (email) {
-    await addDoc(collection(db, "waitlist"), {
-      email: email,
+  // Auth
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Expose ke script.js
+  window.saveEmail = async function(email) {
+    return addDoc(collection(db, "waitlist"), {
+      email,
       createdAt: new Date()
     });
+  };
+
+  window.loginGoogle = async function() {
+    const result = await signInWithPopup(auth, provider);
+    return result.user;
   };
 </script>
 
