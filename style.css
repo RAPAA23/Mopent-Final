@@ -581,3 +581,75 @@ body {
     border-top-width: 10px;
   }
 }
+
+/* ===== Apple Vision Pro Scroll Hint ===== */
+.scroll-hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.6s ease;
+}
+
+.scroll-hint.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-text {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0070bc;
+  opacity: 0.85;
+}
+
+/* garis Apple-style */
+.scroll-line {
+  width: 2px;
+  height: 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,112,188,0) 0%,
+    rgba(0,112,188,1) 50%,
+    rgba(0,112,188,0) 100%
+  );
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+/* Mobile tuning */
+@media (max-width: 600px) {
+  .scroll-hint {
+    bottom: 18px;
+  }
+}

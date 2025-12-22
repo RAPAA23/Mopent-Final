@@ -15,7 +15,6 @@ const welcomeAvatar = document.getElementById("welcomeAvatar");
 const welcomeTitle = document.getElementById("welcomeTitle");
 
 const brandCards = document.getElementById("brandCards");
-const scrollIndicator = document.querySelector(".scroll-indicator");
 const bottomArea = document.querySelector(".bottom-area");
 
 if (joinBtn && popup) {
@@ -92,10 +91,6 @@ scrollToPins?.addEventListener("click", () => {
   document.getElementById("pinSection")?.scrollIntoView({ behavior: "smooth" });
 });
 
-scrollIndicator?.addEventListener("click", () => {
-  document.getElementById("pinSection")?.scrollIntoView({ behavior: "smooth" });
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   const hero = document.querySelector(".hero");
   if (!hero) return;
@@ -115,27 +110,10 @@ const observer = new IntersectionObserver(
   if (el) observer.observe(el);
 });
 
-let hasUserScrolled = false;
-
 // Paksa tampil saat load
 window.addEventListener("load", () => {
   scrollIndicator?.classList.remove("scrolled");
 });
-
-// Deteksi AKSI USER BENERAN
-const markUserScrolled = () => {
-  hasUserScrolled = true;
-  scrollIndicator?.classList.add("scrolled");
-
-  // hapus listener biar gak kepanggil terus
-  window.removeEventListener("wheel", markUserScrolled);
-  window.removeEventListener("touchstart", markUserScrolled);
-  window.removeEventListener("keydown", markUserScrolled);
-};
-
-window.addEventListener("wheel", markUserScrolled, { passive: true });
-window.addEventListener("touchstart", markUserScrolled, { passive: true });
-window.addEventListener("keydown", markUserScrolled);
 
 // Bottom area tetap pakai scrollY
 window.addEventListener("scroll", () => {
@@ -147,3 +125,31 @@ window.addEventListener("scroll", () => {
     bottomArea.classList.remove("scrolled");
   }
 });
+
+const scrollHint = document.getElementById("scrollHint");
+
+if (scrollHint) {
+  // Muncul setelah 2 detik
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      scrollHint.classList.add("visible");
+    }, 2000);
+  });
+
+  // Hilang saat user scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 60) {
+      scrollHint.classList.remove("visible");
+      scrollHint.classList.add("hidden");
+    } else {
+      scrollHint.classList.remove("hidden");
+      scrollHint.classList.add("visible");
+    }
+  });
+
+  // Klik → scroll ke section pin
+  scrollHint.addEventListener("click", () => {
+    document.getElementById("pinSection")
+      ?.scrollIntoView({ behavior: "smooth" });
+  });
+}
