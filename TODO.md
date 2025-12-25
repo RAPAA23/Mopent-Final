@@ -1,0 +1,4 @@
+- [ ] Add HTML structure for character popup in index.html
+- [ ] Add CSS styles for character popup in style.css
+- [ ] Modify JavaScript in script.js to show popup on desktop click for pin items
+- [ ] Test the popup functionality

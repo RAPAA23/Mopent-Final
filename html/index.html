@@ -1,0 +1,217 @@
+<html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mopent — Prelaunch</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="wrap" role="main">
+
+  <div class="nav">
+    <div class="logo">
+      <img src="../picture/logo with typo.png" alt="Logo Mopent">
+    </div>
+    <div class="menu">Prelaunch • Koleksi Perdana</div>
+  </div>
+
+  <!-- WELCOME SECTION (Hidden default) -->
+<div id="welcomeSection" class="welcome hidden">
+  <img id="welcomeAvatar" class="welcome-avatar" src="" alt="Avatar" />
+  <h2 id="welcomeTitle">Welcome!</h2>
+  <p class="welcome-sub">Kamu sudah terdaftar untuk akses awal Mopent.</p>
+  <button class="btn small" id="scrollToPins">Lihat Koleksi</button>
+</div>
+
+  <div class="hero-container">
+    <section class="hero">
+      <h2 class="title" id="mainTitle">Ini Mo-pin ku, mana Mo-pin mu?</h2>
+      <p class="subtitle" id="mainDesc">Kamu bisa lihat koleksi pertama Mopent dan masuk daftar akses awal.</p>
+
+      <div class="cta-row">
+        <button class="btn" id="joinBtn">Masuk daftar awal</button>
+        <button class="btn alt" id="previewBtn">Lihat preview</button>
+      </div>
+    </section>
+
+    <aside class="hero-img" aria-hidden="true">
+      <img id="heroImage" src="https://placehold.co/520x520?text=Mopent+Pin" alt="Hero Image">
+    </aside>
+
+    <div class="scroll-hint" id="scrollHint">
+  <span class="scroll-text">Scroll</span>
+  <div class="scroll-line"></div>
+</div>
+  </div>
+
+  <section class="pin-section" id="pinSection">
+    <h2 class="pin-title">Koleksi Pertama Mopent</h2>
+
+  <!-- BRAND CARDS (Hidden default) -->
+<div id="brandCards" class="brand-cards hidden">
+  
+  <div class="brand-card">
+    <h3>Akses Awal</h3>
+    <p>Kamu bakal jadi orang pertama yang lihat rilisan Mopent.</p>
+  </div>
+
+  <div class="brand-card">
+    <h3>Update Eksklusif</h3>
+    <p>Kami bakal kirim info koleksi baru & bonus subscriber.</p>
+  </div>
+
+</div>
+
+    <div class="pin-gallery">
+  <div class="pin-item active">
+    <img src="../picture/karakter 1.jpeg">
+    <span class="pin-label">Karakter 1</span>
+  </div>
+
+  <div class="pin-item">
+    <img src="../picture/karakter 2.jpeg">
+    <span class="pin-label">Karakter 2</span>
+  </div>
+
+  <div class="pin-item">
+    <img src="../picture/karakter 3.jpeg">
+    <span class="pin-label">Karakter 3</span>
+  </div>
+
+  <div class="pin-item">
+    <img src="../picture/karakter 4.jpeg">
+    <span class="pin-label">Karakter 4</span>
+  </div>
+
+  <div class="pin-item">
+    <img src="../picture/karakter 5.jpeg">
+    <span class="pin-label">Karakter 5</span>
+  </div>
+</div>
+
+  </section>
+
+  <div class="foot">© Mopent. Prelaunch.</div>
+
+</div>
+
+
+<div class="bottom-area">
+  <div class="info-row">
+
+    <section class="social-box" id="socialSection">
+      <h2>Ikuti Kami</h2>
+      <div class="social-links">
+        <a href="https://instagram.com/mhmmdrapaaa_" class="social-item" target="_blank" rel="noopener">
+          <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+
+        <a href="https://x.com/mopent.co" class="social-item" target="_blank" rel="noopener">
+          <img src="https://logo.svgcdn.com/streamline-logos/x-twitter-logo-solid-dark.png" alt="X">
+          <span>X</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@eyhuntt" class="social-item" target="_blank" rel="noopener">
+          <img src="https://img.icons8.com/fluency/48/tiktok.png" alt="Tiktok">
+          <span>Tiktok</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="about-box" id="aboutSection">
+      <h2>Tentang Kami</h2>
+      <p>Pernah punya sesuatu kecil yang bikin kamu merasa… kamu banget? Mopent ngasih kamu cara baru buat nunjukkin sisi unikmu. Koleksi pin pertama kami hadir dengan desain yang personal, detail yang niat, dan vibe yang cuma kamu yang bisa miliki. Ini bukan sekadar pin. Ini Mo-pin mu</p>
+    </section>
+
+  </div>
+</div>
+
+<div class="popup" id="popupJoin">
+  <div class="popup-content">
+    <h2>Daftar Akses Awal</h2>
+    <p class="popup-desc">Masukkan email kamu untuk masuk daftar awal Mopent.</p>
+
+    <input type="email" id="waitlistEmail" placeholder="Email kamu..." />
+
+    <button id="submitEmail" class="btn primary-btn">Daftar dengan Email</button>
+
+    <div class="separator">
+      <span>atau</span>
+    </div>
+
+    <button id="googleLogin" class="google-btn">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
+      <span>Masuk dengan Google</span>
+    </button>
+
+    <button id="closePopup" class="btn alt close-btn">Tutup</button>
+  </div>
+</div>
+
+<p id="emailError" class="email-error"></p>
+
+<!-- Character Popup -->
+<div class="popup" id="characterPopup">
+  <div class="popup-content">
+    <button id="closeCharacterPopup" class="close-popup-btn">&times;</button>
+    <img id="characterImage" src="" alt="Character" class="character-img" />
+    <h2 id="characterName">Karakter</h2>
+    <p id="characterDesc" class="character-desc">Deskripsi karakter akan muncul di sini.</p>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc 
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+  import { 
+    getAuth, 
+    GoogleAuthProvider, 
+    signInWithPopup 
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyASzQXAydTkgNjq8VdDKRDMNw4oYITAfnY",
+    authDomain: "mopent2.firebaseapp.com",
+    projectId: "mopent2",
+    storageBucket: "mopent2.firebasestorage.app",
+    messagingSenderId: "999229291692",
+    appId: "1:999229291692:web:22536f59b581eafade3309"
+  };
+
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+
+  // Firestore
+  const db = getFirestore(app);
+
+  // Auth
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Expose ke script.js
+  window.saveEmail = async function(email) {
+    return addDoc(collection(db, "waitlist"), {
+      email,
+      createdAt: new Date()
+    });
+  };
+
+  window.loginGoogle = async function() {
+    const result = await signInWithPopup(auth, provider);
+    return result.user;
+  };
+</script>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
