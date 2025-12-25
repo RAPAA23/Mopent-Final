@@ -653,3 +653,93 @@ body {
     bottom: 18px;
   }
 }
+
+.pin-gallery {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.pin-item {
+  position: relative;
+  width: 80px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 14px;
+  cursor: pointer;
+  transform: scale(0.85);
+  transition: 
+    width 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.pin-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Deskripsi */
+.pin-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0,0,0,0.55);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.25s ease;
+}
+
+.pin-item.active .pin-label,
+.pin-item:hover .pin-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Aktif melebar */
+.pin-item.active,
+.pin-item:hover {
+  width: 240px;
+  transform: scale(1);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.25);
+}
+
+/* ===== ANIMASI SCROLL MASUK ===== */
+.pin-section {
+  opacity: 1;
+  transform: translateY(80px) scale(0.9);
+}
+
+.pin-section.visible {
+  animation: pinSectionPop 0.7s ease forwards;
+}
+
+@keyframes pinSectionPop {
+  0% {
+    transform: translateY(80px) scale(0.9);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .pin-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pin-item,
+  .pin-item.active {
+    width: 90%;
+    height: 160px;
+  }
+}

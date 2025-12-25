@@ -153,3 +153,25 @@ if (scrollHint) {
       ?.scrollIntoView({ behavior: "smooth" });
   });
 }
+
+const pinItems = document.querySelectorAll(".pin-item");
+
+pinItems.forEach(item => {
+  item.addEventListener("mouseenter", () => {
+    pinItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+  });
+
+  item.addEventListener("mouseleave", () => {
+    item.classList.remove("active");
+  });
+
+  item.addEventListener("click", () => {
+    pinItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
+    setTimeout(() => {
+      item.classList.remove("active");
+    }, 300);
+  });
+});
