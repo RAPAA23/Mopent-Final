@@ -1,0 +1,102 @@
+<html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Terima Kasih — Mopent</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5faff;
+      font-family: Poppins, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+
+    .thank-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      max-width: 380px;
+    }
+
+    .thank-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .thank-desc {
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #0070bc;
+      color: white;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ENTER ANIMATION */
+    .page-enter {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* EXIT ANIMATION */
+    .page-exit {
+      animation: fadeOut 0.4s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="thank-box page-enter">
+    <h2 class="thank-title">Terima Kasih!</h2>
+    <p class="thank-desc">Email kamu sudah masuk daftar awal Mopent.<br>
+    Nantikan update selanjutnya ya!</p>
+
+    <a href="index.html" class="back-btn">Kembali ke halaman utama</a>
+  </div>
+
+  <script>
+    const btn = document.querySelector(".back-btn");
+    const page = document.querySelector(".thank-box");
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      page.classList.add("page-exit");
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 350);
+    });
+  </script>
+
+</body>
+</html>
