@@ -162,25 +162,25 @@ const closeCharacterPopup = document.getElementById("closeCharacterPopup");
 
 // Data karakter
 const characterData = {
-  "Karakter 1": {
+  "Hira": {
     image: "picture/karakter 1.jpeg",
-    desc: "Karakter pertama dengan desain unik dan penuh ekspresi."
+    desc: "Dia ngerasa lebih dulu sebelum mikir.\nNggak banyak suara, tapi paling ngerti."
   },
-  "Karakter 2": {
+  "Raku": {
     image: "picture/karakter 2.jpeg",
-    desc: "Karakter kedua yang menampilkan keberanian dan kreativitas."
+    desc: "Jalan dulu, mikir belakangan.\nHidup nggak harus rapi buat jadi seru."
   },
-  "Karakter 3": {
+  "Sela": {
     image: "picture/karakter 3.jpeg",
-    desc: "Karakter ketiga dengan aura misterius dan menarik."
+    desc: "Nggak semua hal perlu ditanggapi.\nKadang diam itu bentuk paling dewasa."
   },
-  "Karakter 4": {
+  "Nala": {
     image: "picture/karakter 4.jpeg",
-    desc: "Karakter keempat yang penuh energi dan semangat."
+    desc: "Nggak semua yang rame itu bener.\nDia milih percaya setelah paham."
   },
-  "Karakter 5": {
+  "Hara": {
     image: "picture/karakter 5.jpeg",
-    desc: "Karakter kelima dengan gaya klasik dan elegan."
+    desc: "Nggak banyak cerita, tapi jelas tujuannya.\nPelan, tapi konsisten."
   }
 };
 
