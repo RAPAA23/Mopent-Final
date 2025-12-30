@@ -19,21 +19,13 @@
     <div class="menu">Prelaunch • Koleksi Perdana</div>
   </div>
 
-  <!-- WELCOME SECTION (Hidden default) -->
-<div id="welcomeSection" class="welcome hidden">
-  <img id="welcomeAvatar" class="welcome-avatar" src="" alt="Avatar" />
-  <h2 id="welcomeTitle">Welcome!</h2>
-  <p class="welcome-sub">Kamu sudah terdaftar untuk akses awal Mopent.</p>
-  <button class="btn small" id="scrollToPins">Lihat Koleksi</button>
-</div>
-
   <div class="hero-container">
     <section class="hero">
       <h2 class="title" id="mainTitle">Ini Mo-pin ku. Mana Mo-pin mu?</h2>
       <p class="subtitle" id="mainDesc">Bukan buat beda. Tapi buat nemuin yang mirip.</p>
 
       <div class="cta-row">
-        <button class="btn" id="joinBtn">Masuk daftar awal</button>
+        <button class="btn" id="joinBtn">Pesan Sekarang</button>
         <button class="btn alt" id="previewBtn">Lihat preview</button>
       </div>
     </section>
@@ -101,6 +93,16 @@
 
 </div>
 
+<div class="popup" id="popupShop">
+  <div class="popup-content">
+    <h2>Pesan Mopent di</h2>
+
+    <button class="btn alt shop-btn" id="toShopee">Shopee</button>
+    <button class="btn alt shop-btn" id="toLazada">Lazada</button>
+
+    <button class="btn alt close-btn" id="closeShopPopup">Tutup</button>
+  </div>
+</div>
 
 <div class="bottom-area">
   <div class="info-row">
@@ -108,17 +110,17 @@
     <section class="social-box" id="socialSection">
       <h2>Ikuti Kami</h2>
       <div class="social-links">
-        <a href="https://instagram.com/mhmmdrapaaa_" class="social-item" target="_blank" rel="noopener">
+        <a href="https://instagram.com/_mopent" class="social-item" target="_blank" rel="noopener">
           <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="Instagram">
           <span>Instagram</span>
         </a>
 
-        <a href="https://x.com/mopent.co" class="social-item" target="_blank" rel="noopener">
+        <a href="https://x.com/" class="social-item" target="_blank" rel="noopener">
           <img src="https://logo.svgcdn.com/streamline-logos/x-twitter-logo-solid-dark.png" alt="X">
           <span>X</span>
         </a>
 
-        <a href="https://www.tiktok.com/@eyhuntt" class="social-item" target="_blank" rel="noopener">
+        <a href="https://www.tiktok.com/" class="social-item" target="_blank" rel="noopener">
           <img src="https://img.icons8.com/fluency/48/tiktok.png" alt="Tiktok">
           <span>Tiktok</span>
         </a>
@@ -133,28 +135,6 @@
   </div>
 </div>
 
-<div class="popup" id="popupJoin">
-  <div class="popup-content">
-    <h2>Daftar Akses Awal</h2>
-    <p class="popup-desc">Masukkan email kamu untuk masuk daftar awal Mopent.</p>
-
-    <input type="email" id="waitlistEmail" placeholder="Email kamu..." />
-
-    <button id="submitEmail" class="btn primary-btn">Daftar dengan Email</button>
-
-    <div class="separator">
-      <span>atau</span>
-    </div>
-
-    <button id="googleLogin" class="google-btn">
-      <img src="https://www.svgrepo.com/show/475656/google-color.svg" />
-      <span>Masuk dengan Google</span>
-    </button>
-
-    <button id="closePopup" class="btn alt close-btn">Tutup</button>
-  </div>
-</div>
-
 <div class="popup" id="characterPopup">
   <div class="popup-content">
     <img id="characterImage" src="" alt="Character Image" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
@@ -163,55 +143,6 @@
     <button id="closeCharacterPopup" class="btn alt close-btn">Tutup</button>
   </div>
 </div>
-
-<p id="emailError" class="email-error"></p>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { 
-    getFirestore, 
-    collection, 
-    addDoc 
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-
-  import { 
-    getAuth, 
-    GoogleAuthProvider, 
-    signInWithPopup 
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyASzQXAydTkgNjq8VdDKRDMNw4oYITAfnY",
-    authDomain: "mopent2.firebaseapp.com",
-    projectId: "mopent2",
-    storageBucket: "mopent2.firebasestorage.app",
-    messagingSenderId: "999229291692",
-    appId: "1:999229291692:web:22536f59b581eafade3309"
-  };
-
-  // Init Firebase
-  const app = initializeApp(firebaseConfig);
-
-  // Firestore
-  const db = getFirestore(app);
-
-  // Auth
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  // Expose ke script.js
-  window.saveEmail = async function(email) {
-    return addDoc(collection(db, "waitlist"), {
-      email,
-      createdAt: new Date()
-    });
-  };
-
-  window.loginGoogle = async function() {
-    const result = await signInWithPopup(auth, provider);
-    return result.user;
-  };
-</script>
 
 <script src="js/script.js"></script>
 </body>
