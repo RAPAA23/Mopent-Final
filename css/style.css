@@ -6,9 +6,25 @@
 
 body {
   font-family: "Poppins", Arial, sans-serif;
-  background: #f5f5f5;
+  background: linear-gradient(180deg, #f5f5f5 0%, #eaf6ff 65%, #d6eeff 100%);
   color: #2c2c2c;
   overflow-x: hidden;
+}
+
+/* Ensure a persistent downward blue fade at the bottom of the viewport so
+   the gradient doesn't appear cut off on short pages or when other blocks
+   have opaque backgrounds. This sits behind content but above the page
+   edge to give that breathing blue at the bottom. */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320px;
+  pointer-events: none;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(234,246,255,0) 0%, rgba(214,238,255,0.45) 45%, rgba(200,230,255,0.85) 100%);
 }
 
 .wrap {
@@ -17,7 +33,7 @@ body {
   max-width: 1000px;
   margin: auto;
   padding: 15px;
-  padding-bottom: 100px;
+  padding-bottom: 180px;
 }
 
 .nav {
@@ -219,9 +235,9 @@ body {
 
 /* Bottom area highlight when social/about are more in view */
 .bottom-area.bottom-highlight {
-  background: linear-gradient(180deg, rgba(0,112,188,0.03), rgba(0,112,188,0.06));
-  padding-top: 48px;
-  padding-bottom: 48px;
+  background: linear-gradient(180deg, rgba(0,112,188,0.04) 0%, rgba(0,140,220,0.10) 50%, rgba(0,110,200,0.16) 100%);
+  padding-top: 56px;
+  padding-bottom: 96px;
   transition: background 0.5s ease, padding 0.4s ease;
 }
 
@@ -607,7 +623,7 @@ body {
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 999;
+  z-index: 1001;
 
   display: flex;
   flex-direction: column;
@@ -635,34 +651,26 @@ body {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #0070bc;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 /* garis Apple-style */
 .scroll-line {
   width: 2px;
   height: 28px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,112,188,0) 0%,
-    rgba(0,112,188,1) 50%,
-    rgba(0,112,188,0) 100%
-  );
+  background: linear-gradient(to bottom, #0070bc 0%, #0070bc 100%);
   animation: scrollPulse 1.8s ease-in-out infinite;
 }
 
 @keyframes scrollPulse {
   0% {
     transform: translateY(-6px);
-    opacity: 0;
   }
   50% {
     transform: translateY(6px);
-    opacity: 1;
   }
   100% {
     transform: translateY(14px);
-    opacity: 0;
   }
 }
 

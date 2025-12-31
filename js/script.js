@@ -93,8 +93,9 @@ if (bottomArea) {
 
 // Klik → scroll ke section pin
 if (scrollHint) {
-  let lastScrollY = 0;
-  
+  let lastScrollY = window.scrollY || 0;
+  let showTimeout = null;
+
   scrollHint.addEventListener("click", () => {
     document.getElementById("pinSection")
       ?.scrollIntoView({ behavior: "smooth" });
@@ -102,24 +103,32 @@ if (scrollHint) {
     scrollHint.classList.remove('visible');
     scrollHint.classList.add('hidden');
   });
-  
-  // Show/hide hint based on scroll position
+
+  // Show when user scrolls up; hide when scroll down.
   window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
-    const pinVisible = document.getElementById('pinSection')?.classList.contains('visible');
-    
-    if (currentScrollY < 100 && !pinVisible) {
-      // At top, show hint
+    const delta = currentScrollY - lastScrollY;
+
+    if (delta < -2) {
+      // scrolling up
       scrollHint.classList.add('visible');
       scrollHint.classList.remove('hidden');
-    } else {
-      // Scrolled down, hide hint
+
+      // auto-hide after a short pause so it doesn't obstruct
+      clearTimeout(showTimeout);
+      showTimeout = setTimeout(() => {
+        scrollHint.classList.remove('visible');
+        scrollHint.classList.add('hidden');
+      }, 2200);
+    } else if (delta > 10) {
+      // scrolling down
       scrollHint.classList.remove('visible');
       scrollHint.classList.add('hidden');
+      clearTimeout(showTimeout);
     }
-    
+
     lastScrollY = currentScrollY;
-  });
+  }, { passive: true });
 }
 
 // Deep observer: when social/about are more prominently visible, add highlight
